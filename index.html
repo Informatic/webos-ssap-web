@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <style>
+    #log {
+      overflow: auto;
+      height: 50px;
+    }
+
+    .capture {
+      height: 80vh;
+      display: block;
+      width: 100%;
+      position: relative;
+    }
+
+    .capture img {
+      height: 100%;
+    }
+
+    .capture .back,
+    .capture .front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      max-height: 100%;
+    }
+
+    .front {
+      z-index: 99999;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <input type="text" id="ip" placeholder="127.0.0.1" value="127.0.0.1" />
+    <button id="run">run</button>
+  </div>
+  <pre id="log" class="logbar"></pre>
+  <div class="capture">
+  </div>
+
+
+  <script>
+    window.onerror = function (err) {
+      alert('error: ' + JSON.stringify(err) + '\n' + err.fileName + ' ' + err.lineNumber);
+    };
+  </script>
+  <script src="wsproxy.js"></script>
+  <script src="client.js"></script>
+  <script src="demo.js"></script>
+</body>
+
+</html>
