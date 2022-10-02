@@ -47,7 +47,7 @@ document.querySelector('#run').addEventListener('click', async () => {
   window.localStorage['client-key-' + target] = await client.register(manifest);
   log('connected');
 
-  document.querySelector(':focus').blur();
+  if (document.querySelector(':focus')) document.querySelector(':focus').blur();
 
   (async () => {
     const sock = await client.request({
