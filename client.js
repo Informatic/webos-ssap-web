@@ -16,7 +16,8 @@ class SSAPClient {
     return new Promise((resolve, reject) => {
       this.conn = new ProxyWebSocket(this.useTLS ? `wss://${this.target}:3001` : `ws://${this.target}:3000`);
       this.conn.onopen = () => resolve();
-      this.conn.onclose = () => reject();
+      this.conn.onclose = () => reject(new Error('Connection closed'));
+      this.conn.onerror = (err) => reject(new Error('Connection error'));
       this.conn.onmessage = (evt) => this.handleMessage(evt.data);
     });
   }
